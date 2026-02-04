@@ -13,6 +13,7 @@ public class Animal
     private JComboBox comboBox1;
     private JRadioButton esterilizadoRadioButton;
     private JButton guardarButton;
+    private JButton mostrarButton;
 
 
     //Atributos
@@ -46,6 +47,13 @@ public class Animal
 
                 Animal objeto = new Animal(nombre, especie, edad, sexo, esterilizado);
                 animalList.add(objeto);
+                JOptionPane.showMessageDialog(null, "Animal guardado correctamente");
+            }
+        });
+        mostrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mostrarAnimales();
             }
         });
     }
@@ -90,7 +98,24 @@ public class Animal
         this.esterilizado = esterilizado;
     }
 
-    public void pantallaPrincipal()
+    public void mostrarAnimales()
+    {
+        int i = 1;
+        //For Each
+        for (Animal animal : animalList)
+        {
+            System.out.println("Animal " + i);
+            System.out.println("Nombre: "+animal.getNombre());
+            System.out.println("Especie: "+animal.getEspecie ());
+            System.out.println("Edad: "+animal.getEdad());
+            System.out.println("Sexo: "+animal.getSexo());
+            System.out.println("¿Esta esterilizado?: "+animal.isEsterilizado());
+            System.out.println("---------------------------------------");
+            i++;
+        }
+    }
+
+    public static void main(String[] args)
     {
         JFrame frame = new JFrame("Animal");
         frame.setContentPane(new Animal("","",4,"",false).mainPanel);
